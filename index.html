@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Developer Support Group</title>
+    <style>
+        body {
+            background-color: #282c34;
+            color: #61dafb;
+            font-family: 'Comic Sans MS', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: #ff6b6b;
+            text-shadow: 2px 2px #333;
+        }
+
+        h2 {
+            color: #fff59d;
+            font-size: 1.5rem;
+        }
+
+        .support-button {
+            padding: 10px 20px;
+            background: #61dafb;
+            color: #282c34;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            font-size: 1.2rem;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+
+        .support-button:hover {
+            background: #21a1f1;
+        }
+
+        #motivation-output {
+            font-size: 1.3rem;
+            color: #cddc39;
+            margin-top: 20px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        .popup-box {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #ff6b6b;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.3);
+            animation: slideIn 0.5s ease-in-out;
+            display: none;
+        }
+
+        @keyframes slideIn {
+            from {
+                right: -100%;
+            }
+
+            to {
+                right: 20px;
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        .footer-message {
+            font-size: 1rem;
+            color: #b0bec5;
+            margin-top: 50px;
+            font-style: italic;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Developer Support Group</h1>
+    <h2>Your Daily Dose of Debugging Courage</h2>
+    <button class="support-button" onclick="getSupport()">Get Emotional Support</button>
+    <div id="motivation-output">💻 Stay strong, coder!</div>
+
+    <div id="popupBox" class="popup-box">🔧 Pro tip: Don’t forget to drink water, or coffee at least!</div>
+
+    <div class="footer-message">Remember, if (it works) {don't touch it!} 🐛</div>
+
+    <script>
+        const supportMessages = [
+            "Debugging: Because 'It works on my machine' isn't a real solution.",
+            "Warning: Low morale detected! 🥲 Take a deep breath, coder.",
+            "Fact: 99% of programming is just googling error messages.",
+            "Tip: Every time you cry, a bug rejoices. Don't let them win!",
+            "Remember, someone wrote JavaScript, so anything is possible!",
+            "Coding is 10% writing and 90% cursing at the screen. Embrace it.",
+            "You’re not a bad coder. The code is just... complicated. 😜",
+            "Fact: Coffee is a variable that keeps changing but never disappears.",
+            "Your code called: It says it misses you. Go debug it.",
+            "Every great developer you admire has googled 'how to center a div.'",
+            "Error: Sanity not found. Please restart coder and try again. 🤖",
+            "Coding law: If it compiles, it’ll break at runtime.",
+            "Remember, hitting the keyboard harder doesn’t fix the bug (but it helps emotionally).",
+            "Life advice: Write code as if the person maintaining it is a psychopath who knows where you live.",
+            "Did you debug it yet? Try again; it builds character. 💪",
+            "If you stare at the code long enough, it’ll stare back at you.",
+            "Rule #1 of coding: 'If it works, don’t question it.'",
+            "Current status: Half programmer, half detective—debugging my own code. 🕵️",
+            "Bug reports are just your code saying 'surprise!'",
+            "Pro tip: Typing 'please work' into the terminal actually increases success rates.",
+            "Code and coffee—perfecting the 'barely functioning' lifestyle.",
+            "That feeling when you fix one bug and five new ones appear. Coding level: Hydra. 🐉",
+            "Why use semicolons? Because it’s a great way to end a sentence… or your career.",
+            "A coder’s favorite game: Guess the bug with no hints and minimal clues.",
+            "Fact: Every line of code is an opportunity to make future you confused.",
+            "Pro tip: Always remember to save your code before you destroy it.",
+            "Remember, Google is a developer’s best friend and stack overflow their therapist.",
+            "How to impress your coworkers: Don’t. Just code and pray.",
+            "Welcome to programming: where fixing one bug creates two new features.",
+            "If you think it’s a simple fix, you’ve probably missed something big.",
+            "No one asked how your code feels about this. Go ask it; it’s lonely. 😢",
+            "Today’s forecast: 80% chance of unexpected bugs with a chance of more coffee.",
+            "If at first you don’t succeed, redefine success.",
+            "Code like a ninja, debug like a detective, drink coffee like a maniac.",
+            "Fun fact: Debugging is like being the detective in a crime movie where you are also the murderer.",
+            "New rule: If it works, you must document it. Because no one will believe you.",
+            "Today’s goal: Write code without discovering a whole new bug ecosystem.",
+            "Remember: Sleep is for the weak. Code is forever. (But please sleep.)",
+            "Reality check: You didn’t break the code. It was like that when you found it.",
+            "Why did the coder break up with their code? It kept giving mixed signals.",
+            "If you’re feeling lost, don’t worry. Your code is too.",
+            "Coding Fact: Code comments are just you talking to yourself in the future.",
+            "In coding, there’s no such thing as a mistake, only happy accidents… that crash everything.",
+            "Your code's love language: 'Fix me and I'll work.'",
+            "A day in the life of a developer: Coffee. Code. Crash. Repeat.",
+            "Confused by your code? Don’t worry—it’s just as confused by you.",
+            "Coding isn’t about 'if' it’ll break. It’s about 'when.'",
+            "If you’re wondering, yes, it was the compiler's fault (or was it?)",
+            "Fact: Code doesn't get old; it just gets vintage bugs."
+        ];
+
+        function getSupport() {
+            const randomMessage = supportMessages[Math.floor(Math.random() * supportMessages.length)];
+            document.getElementById('motivation-output').textContent = randomMessage;
+            showPopup("Reminder: You're not alone in this!");
+        }
+
+        function showPopup(message) {
+            const popupBox = document.getElementById('popupBox');
+            popupBox.textContent = message;
+            popupBox.style.display = 'block';
+            setTimeout(() => {
+                popupBox.style.display = 'none';
+            }, 4000);
+        }
+
+        // Random reminders for self-care every 15 seconds
+        setInterval(() => {
+            showPopup("💡 Remember: Step away from the code for a bit!");
+        }, 15000);
+    </script>
+</body>
+
+</html>
